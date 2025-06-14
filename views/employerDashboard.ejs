@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employer Dashboard</title>
+    <style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    font-family: Arial, sans-serif;
+    background-color: #fefefe;
+    color: #ecf0f1; 
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ------------------------------
+   Navbar Styling
+------------------------------ */
+nav {
+    position: sticky;
+    top: 0;
+    background: linear-gradient(135deg, #001f3f, #00131a); /* Navy to black gradient */
+    width: 100%;
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    z-index: 10;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+nav .nav {
+    color: #ecf0f1; /* Light gray for navbar text */
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+nav .register-btn {
+    padding: 0.5rem 1.2rem;
+    background: #636a71; /* Navy button */
+    color: #ecf0f1;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: background 0.3s ease;
+    margin-left: auto;
+    margin-right: 1rem;
+}
+
+nav .register-btn:hover {
+    background: #002952; /* Slightly brighter navy */
+}
+
+nav .logout {
+    padding: 0.5rem 1.2rem;
+    background: #990000; /* Red for logout button */
+    color: #ecf0f1;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: background 0.3s ease;
+}
+
+nav .logout:hover {
+    background: #cc0000; /* Brighter red on hover */
+}
+
+/* ------------------------------
+   Page Title
+------------------------------ */
+h1 {
+    margin-top: 2.5rem;
+    color: #000000; /* Bright blue for page title */
+    font-size: 2.4rem;
+    font-weight: bold;
+    text-align: center;
+    letter-spacing: 0.5px;
+}
+
+/* ------------------------------
+   Section Title
+------------------------------ */
+h2 {
+    color: #000000; /* Deep navy */
+    font-size: 2rem;
+    margin: 2rem 0 1rem;
+    text-align: center;
+    font-weight: 600;
+}
+
+/* ------------------------------
+   Registered Companies Section
+------------------------------ */
+.company-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+    padding: 0 2rem;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.company-card {
+    background-color: #1a1a1a; /* Dark gray for cards */
+    border-radius: 12px;
+    padding: 2rem;
+    width: calc(33% - 1rem);
+    min-width: 280px;
+    max-width: 350px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.3); /* Subtle shadow */
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.company-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
+}
+
+.company-card h3 {
+    color: #f8fafb; /* Bright blue for card titles */
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.company-card p {
+    color: #ecf0f1; /* Light gray for text */
+    margin: 0.5rem 0;
+}
+
+.company-card a {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    background: #001f3f; /* Navy for links */
+    color: #000000;
+    text-decoration: none;
+    font-size: 1rem;
+    border-radius: 6px;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.company-card a:hover {
+    background: #002952; /* Brighter navy */
+    transform: translateY(-3px);
+}
+
+/* ------------------------------
+   "No Companies" Message
+------------------------------ */
+.no-companies {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #000000; /* Bright blue for emphasis */
+    margin-top: 2rem;
+}
+
+/* ------------------------------
+   Footer Styling
+------------------------------ */
+footer {
+    margin-top: auto;
+    background-color: #00131a; /* Dark navy */
+    color: #ecf0f1;
+    text-align: center;
+    padding: 1rem 0;
+    font-size: 1rem;
+}
+
+/* ------------------------------
+   Responsive Design
+------------------------------ */
+@media (max-width: 768px) {
+    .company-card {
+        width: calc(50% - 1rem); /* Two cards per row */
+    }
+
+    .company-card a {
+        width: 100%; /* Full-width links */
+    }
+}
+
+@media (max-width: 480px) {
+    .company-card {
+        width: 100%; /* Single column */
+    }
+}
+ 
+      </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav>
+        <div class="nav">Employer Dashboard
+            
+          
+        </div>
+        <a href="/company/register" class="register-btn">Register New Company</a>
+        <a href="/logout" class="logout">Logout</a>
+    </nav>
+
+    <!-- Page Title -->
+    <h1>Employer's Dashboard</h1>
+<br>
+    <!-- Registered Companies Section -->
+    <h2>Registered Companies</h2>
+    <br>
+    <div class="company-grid">
+        <% if (companies && companies.length > 0) { %>
+            <% companies.forEach(company => { %>
+                <div class="company-card">
+                    <h3><%= company.companyName %></h3>
+                    <p><strong>Address:</strong> <%= company.address %></p>
+                    <p><strong>Contact Info:</strong> <%= company.contactInfo %></p>
+                    <a href="/company/<%= company.companyId %>/jobs">Create/Manage Jobs</a>
+                </div>
+            <% }) %>
+        <% } else { %>
+            <p class="no-companies">No companies registered yet.</p>
+        <% } %>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        &copy; 2024 Next Step Workforce Solutions. All rights reserved.
+    </footer>
+
+</body>
+</html>

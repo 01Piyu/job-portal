@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <style>
+        /* Global styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #34495e; /* White background below the navbar */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            margin: 0;
+        }
+
+        /* Navigation bar with gradient */
+        nav {
+            width: 100%;
+            padding: 15px 30px;
+            background: linear-gradient(to right, #ff4081, #7e57c2); /* Gradient navbar */
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 10;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+        }
+
+        nav h1 {
+            font-size: 1.8rem;
+            letter-spacing: 2px;
+            font-weight: bold;
+        }
+
+        nav ul {
+            list-style-type: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        nav ul li {
+            font-size: 1.1rem;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #ff4081;
+        }
+
+        /* Registration Form Container */
+        .registration-form {
+            width: 100%;
+            max-width: 400px;
+            padding: 40px;
+            background: rgba(215, 213, 213, 0.9); /* Slightly opaque white background */
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin-top: 100px; /* Space for the navbar */
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .input-group {
+            position: relative;
+            margin: 15px 0;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        select,
+        input[type="file"] {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            background: #f9f9f9;
+            color: #333;
+            font-size: 16px;
+            outline: none;
+            transition: 0.3s ease-in-out;
+        }
+
+        input::placeholder {
+            color: #aaa;
+            opacity: 0.7;
+        }
+
+        input:focus {
+            border-color: #34495e;
+            background-color: #fff;
+        }
+
+        select {
+            padding: 14px;
+            background: #f9f9f9;
+            border-radius: 8px;
+            font-size: 16px;
+            color: #333;
+        }
+
+        .checkbox-label {
+            font-size: 14px;
+            color: #333;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Submit Button */
+        button {
+            background: linear-gradient(135deg, #368cdc, #34495e);
+            color: #fff;
+            padding: 12px;
+            border: none;
+            width: 100%;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+            margin-top: 15px;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background: linear-gradient(135deg, #5b86e5, #36d1dc);
+        }
+
+        /* Bottom Link */
+        .link {
+            display: block;
+            margin-top: 10px;
+            color: #84a1e0;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .link:hover {
+            color: #34495e;
+        }
+
+        /* Glowing effect for button */
+        .button-glow {
+            animation: glow 1.5s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% {
+                box-shadow: 0px 0px 10px rgba(243, 198, 198, 0.8);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="registration-form button-glow">
+        <h2>Registration Form</h2>
+        <form action="/auth/register" method="POST" enctype="multipart/form-data">
+            <input type="text" name="name" placeholder="Name" required>
+            <input type="email" name="email" placeholder="Email address" required>
+            
+           
+            <input type="password" name="password" placeholder="Password" required>
+            <select name="role" required>
+                <option value="">Select Role</option>
+                <option value="JobSeeker">JobSeeker</option>
+                <option value="Employer">Employer</option>
+                <option value="Admin">Admin</option>
+            </select>
+            <input type="file" name="validDocument" >
+            <div class="checkbox-label">
+                <input type="checkbox" name="terms" required>
+                <span>Agree to terms and conditions</span>
+            </div>
+            <button type="submit">Create Account</button>
+        </form>
+        <a href="/login" class="link">Already have an account? Sign in</a>
+    </div>
+</body>
+</html>
